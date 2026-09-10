@@ -1,0 +1,924 @@
+/* ==========================================================================
+   1. Variables & Global Reset
+   ========================================================================== */
+:root {
+    --bg-main: #0b0f19;
+    --bg-card: #111827;
+    --bg-card-hover: #1f2937;
+    --border-color: #1f2937;
+    
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+    
+    --accent-color: #6366f1;
+    --accent-hover: #4f46e5;
+    
+    --danger-color: #ef4444;
+    --danger-bg: rgba(239, 68, 68, 0.1);
+    --danger-hover: #dc2626;
+
+    --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --radius-lg: 12px;
+    --radius-md: 8px;
+    --transition: all 0.2s ease-in-out;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+   2. Layout & Containers
+   ========================================================================== */
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.page-content {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* ==========================================================================
+   3. Header / Navigation
+   ========================================================================== */
+.navbar {
+    background-color: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    background: linear-gradient(135deg, #818cf8, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   4. Cards & Components
+   ========================================================================== */
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: var(--text-primary);
+}
+
+/* User Profile Specifics */
+.profile-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+}
+
+.profile-item {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: rgba(255, 255, 255, 0.03) !important; /* Внутренний фон карточки */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 1.25rem 1.5rem !important;
+    border-radius: 12px !important;
+}
+.profile-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.profile-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Cart Specifics */
+.cart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.cart-header .card-title {
+    margin-bottom: 0;
+}
+
+.badge {
+    background-color: var(--border-color);
+    color: var(--accent-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+}
+
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+}
+
+.cart-item:hover {
+    background-color: var(--bg-card-hover);
+}
+
+.cart-item-name {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.cart-empty {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   5. Buttons & Controls
+   ========================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.btn-danger-sm {
+    background-color: var(--danger-bg);
+    color: var(--danger-color);
+    padding: 0.4rem 0.85rem;
+    font-size: 0.875rem;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.btn-danger-sm:hover {
+    background-color: var(--danger-color);
+    color: #ffffff;
+}
+/* ==========================================================================
+   6. Forms & Authentication (Add to end of style.css)
+   ========================================================================== */
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 160px);
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.form-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Django Form Styling */
+.form-fields p {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.form-fields label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.form-fields input[type="text"],
+.form-fields input[type="password"],
+.form-fields input[type="email"],
+.form-fields input[type="number"],
+.form-fields select,
+.form-fields textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: var(--transition);
+}
+
+.form-fields input:focus,
+.form-fields select:focus,
+.form-fields textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.form-fields .helptext {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.form-fields .errorlist {
+    list-style: none;
+    color: var(--danger-color);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn-block {
+    width: 100%;
+}
+/* ==========================================================================
+   7. Pulse Animation (Add to end of style.css)
+   ========================================================================== */
+.pulse-animation {
+    width: 64px;
+    height: 64px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.5;
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+        box-shadow: 0 0 0 20px rgba(99, 102, 241, 0);
+    }
+    100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+    }
+}
+/* ==========================================================================
+   8. Index Page & Main Navigation Extra (Add to end of style.css)
+   ========================================================================== */
+.user-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.2;
+}
+
+.user-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.user-name:hover {
+    color: var(--accent-color);
+}
+
+.sign-out-link {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.sign-out-link:hover {
+    color: var(--danger-color);
+}
+
+.btn-primary-sm {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.btn-primary-sm:hover {
+    background-color: var(--accent-hover);
+}
+
+.nav-link.active {
+    color: var(--text-primary);
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 2rem 0 1rem;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #ffffff, var(--text-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+/* Grids & Category Cards */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.category-card:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    background-color: var(--bg-card-hover);
+}
+
+.category-icon {
+    background-color: rgba(99, 102, 241, 0.1);
+    color: var(--accent-color);
+    padding: 0.75rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+}
+
+.category-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.category-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+/* ==========================================================================
+   9. Data Tables & Badges (Add to end of style.css)
+   ========================================================================== */
+.table-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.data-table th,
+.data-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-table th {
+    background-color: rgba(255, 255, 255, 0.02);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.data-table tbody tr {
+    transition: var(--transition);
+}
+
+.data-table tbody tr:hover {
+    background-color: var(--bg-card-hover);
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.font-semibold {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* Status Badges */
+.badge-success {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    padding: 0.25rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: var(--radius-md);
+}
+
+.badge-secondary {
+    background-color: rgba(156, 163, 175, 0.1);
+    color: var(--text-muted);
+    border: 1px solid rgba(156, 163, 175, 0.2);
+    padding: 0.25rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: var(--radius-md);
+}
+
+.badge-in-cart {
+    background-color: rgba(99, 102, 241, 0.1);
+    color: var(--accent-color);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    display: inline-block;
+}
+
+/* Cart Row Container */
+.cart-item {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 12px 20px !important;
+    background: #111827 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.cart-item-info {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+}
+
+.cart-item-name {
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    color: #f8fafc !important;
+}
+
+.cart-item-price {
+    font-size: 0.85rem !important;
+    color: #94a3b8 !important;
+}
+
+/* Controls Wrapper */
+.cart-item-controls {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+}
+
+/* Stepper Component */
+.quantity-stepper {
+    display: flex !important;
+    align-items: center !important;
+    background: #1e293b !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 8px !important;
+    padding: 3px !important;
+}
+
+.step-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 6px !important;
+    font-size: 1.1rem !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+    transition: background 0.2s ease, color 0.2s ease !important;
+}
+
+.btn-minus {
+    background: rgba(239, 68, 68, 0.2) !important;
+    color: #f87171 !important;
+}
+
+.btn-minus:hover {
+    background: #ef4444 !important;
+    color: #ffffff !important;
+}
+
+.btn-plus {
+    background: rgba(99, 102, 241, 0.2) !important;
+    color: #818cf8 !important;
+}
+
+.btn-plus:hover {
+    background: #6366f1 !important;
+    color: #ffffff !important;
+}
+
+.step-value {
+    min-width: 32px !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    color: #f1f5f9 !important;
+}
+
+.item-total-cost {
+    font-weight: 700 !important;
+    font-size: 1.05rem !important;
+    color: #f8fafc !important;
+    min-width: 75px !important;
+    text-align: right !important;
+}
+
+/* Footer Total */
+.cart-footer {
+    margin-top: 16px !important;
+    padding-top: 12px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.total-label {
+    font-size: 1.1rem !important;
+    color: #94a3b8 !important;
+}
+
+.total-price {
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    color: #818cf8 !important;
+}
+
+/* Кнопка "Clear Cart" в шапке */
+.btn-clear-cart {
+    background: rgba(239, 68, 68, 0.15) !important;
+    color: #ef4444 !important;
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+    padding: 6px 14px !important;
+    border-radius: 6px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-clear-cart:hover {
+    background: #ef4444 !important;
+    color: #ffffff !important;
+}
+
+/* Кнопка-крестик для удаления конкретного товара */
+.btn-remove-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 28px !important;
+    height: 28px !important;
+    color: #64748b !important;
+    border-radius: 6px !important;
+    text-decoration: none !important;
+    font-size: 0.9rem !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-remove-item:hover {
+    background: rgba(239, 68, 68, 0.2) !important;
+    color: #ef4444 !important;
+}
+
+/* Back Button */
+.btn-back {
+    position: absolute !important;
+    left: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 8px 16px !important;
+    background: #1e293b !important;
+    color: #94a3b8 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-back:hover {
+    background: #334155 !important;
+    color: #f8fafc !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.back-arrow {
+    font-size: 1.1rem !important;
+    line-height: 1 !important;
+    transition: transform 0.2s ease !important;
+}
+
+.btn-back:hover .back-arrow {
+    transform: translateX(-3px) !important;
+}
+
+/* Адаптив под мобильные экраны */
+@media (max-width: 640px) {
+    .page-header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+    }
+
+    .btn-back {
+        position: static !important;
+        transform: none !important;
+    }
+}
+
+/* Checkout Section */
+.cart-footer {
+    margin-top: 1.5rem !important;
+    padding-top: 1.25rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    flex-wrap: wrap !important;
+}
+
+.total-info {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+}
+
+.total-label {
+    font-size: 0.9rem !important;
+    color: #94a3b8 !important;
+}
+
+.total-price {
+    font-size: 1.6rem !important;
+    font-weight: 700 !important;
+    color: #818cf8 !important;
+}
+
+.btn-checkout {
+    background: #6366f1 !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 12px 24px !important;
+    border-radius: 8px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: background 0.2s ease, transform 0.1s ease !important;
+}
+
+.btn-checkout:hover {
+    background: #4f46e5 !important;
+    transform: translateY(-1px) !important;
+}
+
+.btn-checkout:active {
+    transform: translateY(0) !important;
+}
+
+/* Header Cart Button */
+.header-cart-btn {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px !important;
+    color: #94a3b8 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    margin: 0 8px !important;
+}
+
+.header-cart-btn:hover {
+    background: rgba(99, 102, 241, 0.15) !important;
+    color: #818cf8 !important;
+    border-color: rgba(99, 102, 241, 0.3) !important;
+}
+
+.cart-icon {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/* Badge (Кружок с числом) */
+.cart-badge {
+    position: absolute !important;
+    top: -5px !important;
+    right: -5px !important;
+    background: #6366f1 !important; /* Насыщенный фиолетовый/индиго */
+    color: #ffffff !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    min-width: 18px !important;
+    height: 18px !important;
+    padding: 0 5px !important;
+    border-radius: 9999px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 2px solid #0f172a !important; /* Цвет фона шапки для эффекта отступа */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    line-height: 1 !important;
+}
+
+/* Header Wrapper for Pages with Back Button */
+.page-header-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 800px !important;
+    margin: 0 auto 2rem auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* Back Button Positioning & Appearance */
+.btn-back {
+    position: absolute !important;
+    left: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 8px 16px !important;
+    background: #1e293b !important;
+    color: #94a3b8 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-back:hover {
+    background: #334155 !important;
+    color: #f8fafc !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.back-arrow {
+    font-size: 1.1rem !important;
+    line-height: 1 !important;
+    transition: transform 0.2s ease !important;
+}
+
+.btn-back:hover .back-arrow {
+    transform: translateX(-3px) !important;
+}

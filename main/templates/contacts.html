@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts - Computer Store</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+    {% include 'header.html' %} <!--[cite: 2] -->
+
+    <main class="container page-content" style="padding-top: 3rem; display: block;">
+        <div class="page-header-wrapper">
+            <a href="/" class="btn-back" title="Back to main page">
+                <span class="back-arrow">←</span>
+                <span>Main Page</span>
+            </a>
+            <h1 class="hero-title text-center">Contacts</h1>
+        </div>
+
+        <section class="card auth-card text-center" style="margin: 0 auto;">
+            <div class="profile-item" style="margin-bottom: 0;">
+                <span class="profile-label">Email</span>
+                <span class="profile-value">{{ email }}</span>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSD - Computer Store</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+    {% include 'header.html' %} <!--[cite: 2] -->
+
+    <main class="container page-content">
+        <div class="page-header text-center" style="position: relative;">
+        <!-- Кнопка Назад -->
+        <a href="/" class="btn-back" title="Back to main page">
+            <span class="back-arrow">←</span>
+            <span>Back</span>
+        </a>
+
+        <h1 class="hero-title">SSD</h1>
+        <p class="hero-subtitle">Found {{ count }} product{{ end }}</p>
+        </div>
+
+        <section class="card table-card">
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>On sale?</th>
+                            <th class="text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in pr %} <!--[cite: 2] -->
+                        <tr>
+                            <td class="font-semibold">{{ i.name }}</td> <!--[cite: 2] -->
+                            <td>{{ i.price }} $</td> <!--[cite: 2] -->
+                            <td>
+                                {% if i.in_sell %} <!--[cite: 2] -->
+                                    <span class="badge badge-success">Yes</span> <!--[cite: 2] -->
+                                {% else %}
+                                    <span class="badge badge-secondary">No</span> <!--[cite: 2] -->
+                                {% endif %}
+                            </td>
+                            <td class="text-right">
+                                {% if i.id in cart_product_ids %}
+                                    <a href="/cart/"><span class="badge badge-in-cart">In cart</span></a>
+                                {% else %}
+                                    <a href="/put-to-cart/{{ i.id }}/" class="btn btn-primary-sm">To cart</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

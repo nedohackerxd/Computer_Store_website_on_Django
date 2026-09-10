@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Computer Store</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="/" class="logo">Computer Store</a>
+            <nav class="nav-links">
+                <a href="/" class="nav-link">Main page</a>
+            </nav>
+            <div class="user-nav"></div>
+        </div>
+    </header>
+
+    <main class="container page-content flex-center">
+        <section class="card auth-card">
+            <h1 class="card-title text-center">{{ text }}</h1>
+            
+            <form method="post" action="/sign-up-2/" class="form-layout">
+                {% csrf_token %}
+                <div class="form-fields">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

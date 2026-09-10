@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Store</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+    {% include 'header.html' %}
+    
+    <main class="container page-content">
+        <section class="hero-section text-center">
+            <h1 class="hero-title">Welcome to Computer Store!</h1>
+            <p class="hero-subtitle">Choose a category below to explore our components.</p>
+        </section>
+
+        <section class="categories-section">
+            <h2 class="section-title text-center">Categories</h2>
+            <div class="grid-4">
+                <a href="/products/processors/" class="card category-card">
+                    <div class="category-icon">
+                        <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                    </div>
+                    <h3 class="category-title">Processors</h3>
+                    <p class="category-desc">Intel Core and AMD Ryzen desktop CPUs</p>
+                </a>
+
+                <a href="/products/videocards/" class="card category-card">
+                    <div class="category-icon">
+                        <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h3 class="category-title">Videocards</h3>
+                    <p class="category-desc">NVIDIA GeForce, AMD Radeon GPUs</p>
+                </a>
+
+                <a href="/products/ram/" class="card category-card">
+                    <div class="category-icon">
+                        <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                    </div>
+                    <h3 class="category-title">RAM</h3>
+                    <p class="category-desc">DDR4 and High-Speed DDR5 Memory</p>
+                </a>
+
+                <a href="/products/ssd/" class="card category-card">
+                    <div class="category-icon">
+                        <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 12h14M5 16h14M3 4h18a1 1 0 011 1v14a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z"></path></svg>
+                    </div>
+                    <h3 class="category-title">Storage (SSD)</h3>
+                    <p class="category-desc">Fast NVMe M.2 and SATA drives</p>
+                </a>
+
+                <a href="/products/motherboards/" class="card category-card">
+                    <div class="category-icon">
+                        <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"></path></svg>
+                    </div>
+                    <h3 class="category-title">Motherboards</h3>
+                    <p class="category-desc">Intel & AMD Sockets (AM5, LGA1700)</p>
+                </a>
+
+                <a href="/products/powersupplies/" class="card category-card">
+                    <div class="category-icon">
+                        <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="category-title">Power Supplies</h3>
+                    <p class="category-desc">80+ Bronze, Gold, and Modular PSUs</p>
+                </a>
+
+                <a href="/products/cooling/" class="card category-card">
+                    <div class="category-icon">
+                        <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m9-9H3m15.364 6.364l-12.728-12.728m0 12.728l12.728-12.728"></path></svg>
+                    </div>
+                    <h3 class="category-title">Cooling</h3>
+                    <p class="category-desc">CPU Air Coolers and Liquid AIO Systems</p>
+                </a>
+
+                <a href="/products/cases/" class="card category-card">
+                    <div class="category-icon">
+                        <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                    </div>
+                    <h3 class="category-title">Cases</h3>
+                    <p class="category-desc">ATX, Micro-ATX, and Mesh Chassis</p>
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

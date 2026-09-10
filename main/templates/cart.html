@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Computer Store</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+    {% include 'header.html' %} <!--[cite: 1, 2] -->
+
+    <main class="container page-content">
+        <div class="page-header text-center" style="position: relative;">
+            <a href="javascript:history.back()" class="btn-back" title="Back">
+                <span class="back-arrow">←</span>
+                <span>Back</span>
+            </a>
+
+            <h1 class="hero-title">Shopping Cart</h1>
+            <p class="hero-subtitle">
+                {% with total_items=cart.get_total_quantity %}
+                    You have {{ total_items }} item{{ total_items|pluralize }} in your cart
+                {% endwith %}
+            </p>
+        </div>
+
+        <section class="card cart-card" style="max-width: 800px; margin: 0 auto;">
+            <div class="cart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                <h2 class="card-title" style="margin: 0;">Order Items</h2>
+
+                {% if cart.items.all %}
+                <a href="/clear-cart/" class="btn-clear-cart" title="Clear entire cart">Clear Cart</a>
+                {% endif %}
+            </div>
+            
+            <div class="cart-list">
+                {% for item in cart.items.all %}
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <span class="cart-item-name">{{ item.product.name }}</span>
+                        <span class="cart-item-price">${{ item.product.price }} / unit</span>
+                    </div>
+                    
+                    <div class="cart-item-controls">
+                        <div class="quantity-stepper">
+                            <a href="/del-from-cart/{{ item.product.id }}/" class="step-btn btn-minus" title="Decrease">−</a>
+                            <span class="step-value">{{ item.quantity }}</span>
+                            <a href="/put-to-cart/{{ item.product.id }}/" class="step-btn btn-plus" title="Increase">+</a>
+                        </div>
+                        
+                        <div class="item-total-cost">
+                            ${{ item.get_cost }}
+                        </div>
+
+                        <a href="/remove-from-cart/{{ item.product.id }}/" class="btn-remove-item" title="Remove item">✕</a>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="cart-empty" style="text-align: center; padding: 3rem 1rem;">
+                    <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 1.5rem;">Your cart is empty.</p>
+                    <a href="/" class="btn btn-primary-sm" style="padding: 10px 20px; font-size: 0.95rem;">Browse Products</a>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if cart.items.all %}
+            <div class="cart-footer">
+                <div class="total-info">
+                    <span class="total-label">Total Amount:</span>
+                    <span class="total-price">${{ cart.get_total_price }}</span>
+                </div>
+                <button class="btn-checkout" type="button">Proceed to Checkout</button>
+            </div>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

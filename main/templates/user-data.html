@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Computer Store</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+    {% include 'header.html' %} <!-- -->
+
+    <main class="container page-content">
+        <!-- Шапка страницы с кнопкой Назад -->
+        <div class="page-header" style="position: relative; margin-bottom: 2rem;">
+            <a href="/" class="btn-back" title="Back to main page">
+                <span class="back-arrow">←</span>
+                <span>Main Page</span>
+            </a>
+            <h1 class="hero-title text-center">User Profile</h1>
+        </div>
+
+        <!-- User Info Section -->
+        <section class="card profile-card" style="max-width: 700px; margin: 0 auto;">
+        <div class="profile-grid">
+            <div class="profile-item">
+                <span class="profile-label">Name</span>
+                <span class="profile-value">{{ udata.name }}</span>
+            </div>
+            <div class="profile-item">
+                <span class="profile-label">Email</span>
+                <span class="profile-value">{{ udata.email }}</span>
+            </div>
+        </div>
+    </section>
+    </main>
+</body>
+</html>
